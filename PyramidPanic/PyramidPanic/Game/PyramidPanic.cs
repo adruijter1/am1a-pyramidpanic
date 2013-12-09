@@ -34,9 +34,7 @@ namespace PyramidPanic
         // Maak een variabele iState aan van het type interface IState
         private IState iState;
                 
-        #region Properties
-        // Properties
-        
+        #region Properties        
         // Maak de interface variabele iState beschikbaar buiten de class d.m.v
         // een property IState
         public IState IState
@@ -71,7 +69,14 @@ namespace PyramidPanic
         public GameOverScene GameOverScene
         {
             get { return this.gameOverScene; }
-        } 
+        }
+
+        // Maak het field this.spriteBatch beschikbaar buiten de class d.m.v een
+        // property SpriteBatch
+        public SpriteBatch SpriteBatch
+        {
+            get { return this.spriteBatch; }
+        }
         #endregion
 
         //Dit is de constructor. Heeft altijd dezelfde naam als de class.
@@ -135,8 +140,10 @@ namespace PyramidPanic
             if ((GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) ||
                 (Keyboard.GetState().IsKeyDown(Keys.Escape)))
                 this.Exit();
+
             // De Update method van de static Input class wordt aangeroepen
             Input.Update();
+
             // De Update methode van het object dat toegewezen is aan het interface-object
             // this.iState wordt aangeroepen.
             this.iState.Update(gameTime);
