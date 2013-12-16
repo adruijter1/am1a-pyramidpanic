@@ -84,6 +84,10 @@ namespace PyramidPanic
 
             
             
+
+
+            
+
             // Maak een switch case instructie voor de variabele buttonActive
             switch (this.buttonActive)
             {
@@ -91,10 +95,14 @@ namespace PyramidPanic
                     // De Ternary operator:
                     // variabele = (vergelijking) ? waarde als waar : waarde als niet waar;
                     this.game.IState = (Input.EdgeDetectKeyDown(Keys.Enter))
-                            ? (IState)this.game.PlayScene : this.game.StartScene; 
+                            ? (IState)this.game.PlayScene : this.game.StartScene;
                     this.start.Color = this.activeColor;
                     break;
                 case Buttons.Load:
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.IState = this.game.LoadScene;
+                    }
                     this.load.Color = this.activeColor;
                     break;
                 case Buttons.Scores:
@@ -107,6 +115,47 @@ namespace PyramidPanic
                     this.quit.Color = this.activeColor;
                     break;
             }
+
+
+            if (this.start.Rectangle.Intersects(Input.MouseRect()))
+            {
+                if (Input.EdgeDetectMousePressLeft())
+                {
+                    this.game.IState = this.game.PlayScene;
+                }
+                this.ChangeButtonColorToNormal();
+                this.start.Color = this.activeColor;
+            }
+            else if (this.load.Rectangle.Intersects(Input.MouseRect()))
+            {
+                if (Input.EdgeDetectMousePressLeft())
+                {
+                    this.game.IState = this.game.LoadScene;
+                }
+                this.ChangeButtonColorToNormal();
+                this.load.Color = this.activeColor;
+            }
+            else if (this.help.Rectangle.Intersects(Input.MouseRect()))
+            {
+                this.ChangeButtonColorToNormal();
+                this.help.Color = this.activeColor;
+            }
+            else if (this.scores.Rectangle.Intersects(Input.MouseRect()))
+            {
+                this.ChangeButtonColorToNormal();
+                this.scores.Color = this.activeColor;
+            }
+            else if (this.quit.Rectangle.Intersects(Input.MouseRect()))
+            {
+                this.ChangeButtonColorToNormal();
+                this.quit.Color = this.activeColor;
+            }
+            else
+            {
+                this.ChangeButtonColorToNormal();
+                //this.start.Color = this.activeColor;
+            }
+
         }
 
 
