@@ -12,25 +12,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    public class Scorpion
+    public class Scorpion : AnimatedSprite
     {
         //Fields
         private PyramidPanic game;
         private Texture2D texture;
-        private Rectangle destinationRectangle, sourceRectangle;
-        private float timer = 0f;
-
-
+        
         //Properties
+        public PyramidPanic Game
+        {
+            get { return this.game; }
+        }
+
+        public Texture2D Texture
+        {
+            get { return this.texture; }
+        }
 
 
         //Constructor
-        public Scorpion(PyramidPanic game)
+        public Scorpion(PyramidPanic game) : base(game)
         {
             this.game = game;
             this.texture = game.Content.Load<Texture2D>(@"Scorpion\Scorpion");
-            this.sourceRectangle = new Rectangle(64, 0, 32, 32);
-            this.destinationRectangle = new Rectangle(100, 200, this.texture.Width/4, this.texture.Height);
         }
 
 
@@ -38,33 +42,13 @@ namespace PyramidPanic
         //Update
         public void Update(GameTime gameTime)
         {
-            if (this.timer > 5 / 60f)
-            {
-                if (this.sourceRectangle.X < 96)
-                {
-                    this.sourceRectangle.X += 32;
-                }
-                else
-                {
-                    this.sourceRectangle.X = 0;
-                }
-                this.timer = 0f;
-            }
-            
-            this.timer += 1 / 60f;
+            base.Update(gameTime);
         }
 
         //Draw
         public void Draw(GameTime gameTime)
         {
-            this.game.SpriteBatch.Draw(this.texture,
-                                       this.destinationRectangle,
-                                       this.sourceRectangle,
-                                       Color.White,
-                                       0f,
-                                       Vector2.Zero,
-                                       SpriteEffects.None,
-                                       0f);                                        
+            base.Draw(gameTime, this.texture);                   
         }
     }
 }
