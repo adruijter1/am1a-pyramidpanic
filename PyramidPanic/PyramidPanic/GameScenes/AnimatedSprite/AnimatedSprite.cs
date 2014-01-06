@@ -14,9 +14,11 @@ namespace PyramidPanic
 {
     public class AnimatedSprite
     {
+        //Fields
         private PyramidPanic game;
-        private Rectangle destinationRectangle, sourceRectangle;
+        protected Rectangle destinationRectangle, sourceRectangle;
         private float timer = 0f;
+        protected SpriteEffects effect;
 
         // De constructor
         public AnimatedSprite(PyramidPanic game)
@@ -24,8 +26,8 @@ namespace PyramidPanic
             this.game = game;
             this.sourceRectangle = new Rectangle(64, 0, 32, 32);
             this.destinationRectangle = new Rectangle(100, 200, 32, 32);
+            this.effect = SpriteEffects.None;
         }
-
 
         //Update
         public void Update(GameTime gameTime)
@@ -55,7 +57,7 @@ namespace PyramidPanic
                                        Color.White,
                                        0f,
                                        Vector2.Zero,
-                                       SpriteEffects.None,
+                                       this.effect,
                                        0f);              
         }
     }
