@@ -34,6 +34,9 @@ namespace PyramidPanic
         // Maak een variabele aan van het type LoadScene
         private LoadScene loadScene;
 
+        // Maak een variabele aan van het type QuitScene
+        private QuitScene quitScene;
+
         // Maak een variabele iState aan van het type interface IState
         private IState iState;
                 
@@ -79,6 +82,11 @@ namespace PyramidPanic
         public LoadScene LoadScene
         {
             get { return this.loadScene; }
+        }
+
+        public QuitScene QuitScene
+        {
+            get { return this.quitScene; }
         }
 
         // Maak het field this.spriteBatch beschikbaar buiten de class d.m.v een
@@ -136,6 +144,9 @@ namespace PyramidPanic
 
             // Nieuwe instantie (object) van de LoadScene class
             this.loadScene = new LoadScene(this);
+
+            // Nieuwe instantie (object) van de QuitScene class
+            this.quitScene = new QuitScene(this);
 
             
             this.iState = this.startScene;
