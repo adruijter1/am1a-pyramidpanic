@@ -31,12 +31,19 @@ namespace PyramidPanic
                                                       32);
         }
 
+        public void Initialize()
+        {
+            this.destinationRectangle.X = (int)this.scorpion.Position.X;
+            this.destinationRectangle.Y = (int)this.scorpion.Position.Y;
+        }
+
         public new void Update(GameTime gameTime)
         {
             if (this.scorpion.Position.X < 0)
             {
                 //Breng de beetle in de toestand walkdown
-                this.scorpion.State = new WalkRight(this.scorpion);
+                this.scorpion.State = this.scorpion.WalkRight;
+                this.scorpion.WalkRight.Initialize();
             }
             this.scorpion.Position -= new Vector2(this.scorpion.Speed, 0f);
             this.destinationRectangle.X = (int)this.scorpion.Position.X;

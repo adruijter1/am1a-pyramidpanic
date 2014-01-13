@@ -30,12 +30,19 @@ namespace PyramidPanic
                                                       32);
         }
 
+        public void Initialize()
+        {
+            this.destinationRectangle.X = (int)this.beetle.Position.X;
+            this.destinationRectangle.Y = (int)this.beetle.Position.Y;
+        }
+
         public new void Update(GameTime gameTime)
         {
             if (this.beetle.Position.Y < 0)
             {
                 //Breng de beetle in de toestand walkdown
-                this.beetle.State = new WalkDown(this.beetle);
+                this.beetle.State = this.beetle.WalkDown;
+                this.beetle.WalkDown.Initialize();
             }
             this.beetle.Position -= new Vector2(0f, this.beetle.Speed);
             this.destinationRectangle.X = (int)this.beetle.Position.X;

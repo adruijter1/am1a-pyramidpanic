@@ -20,29 +20,36 @@ namespace PyramidPanic
         private Texture2D texture;
         private int speed = 2;
         private Vector2 position;
+        private WalkLeft walkLeft;
+        private WalkRight walkRight;
+
 
         //properties
+        public WalkLeft WalkLeft
+        {
+            get { return this.walkLeft; }
+        }
+        public WalkRight WalkRight
+        {
+            get { return this.walkRight; }
+        }
         public Vector2 Position
         {
             get { return this.position; }
             set { this.position = value; }
         }
-
         public IEntityState State
         {
             set { this.state = value; }
         }
-
         public PyramidPanic Game
         {
             get { return this.game; }
         }
-
         public int Speed
         {
             get { return this.speed; }
         }
-
         public Texture2D Texture
         {
             get { return this.texture; }
@@ -54,7 +61,9 @@ namespace PyramidPanic
             this.game = game;
             this.position = position;
             this.texture = game.Content.Load<Texture2D>(@"Scorpion\Scorpion");
-            this.state = new WalkLeft(this);
+            this.walkLeft = new WalkLeft(this);
+            this.walkRight = new WalkRight(this);
+            this.state = this.walkLeft;
         }
 
         //Update
