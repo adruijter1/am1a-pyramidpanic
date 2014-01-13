@@ -15,17 +15,16 @@ namespace PyramidPanic
     public class AnimatedSprite
     {
         //Fields
-        private PyramidPanic game;
+        private IAnimatedSprite iAnimatedSprite;
         protected Rectangle destinationRectangle, sourceRectangle;
         private float timer = 0f;
         protected SpriteEffects effect;
 
         // De constructor
-        public AnimatedSprite(PyramidPanic game)
+        public AnimatedSprite(IAnimatedSprite iAnimatedSprite)
         {
-            this.game = game;
-            this.sourceRectangle = new Rectangle(64, 0, 32, 32);
-            this.destinationRectangle = new Rectangle(100, 200, 32, 32);
+            this.iAnimatedSprite = iAnimatedSprite;
+            this.sourceRectangle = new Rectangle(64, 0, 32, 32);            
             this.effect = SpriteEffects.None;
         }
 
@@ -49,16 +48,16 @@ namespace PyramidPanic
 
 
         // Draw method van de AnimatedSprite class
-        public void Draw(GameTime gameTime, Texture2D texture)
+        public void Draw(GameTime gameTime)
         {
-            this.game.SpriteBatch.Draw(texture,
-                                       this.destinationRectangle,
-                                       this.sourceRectangle,
-                                       Color.White,
-                                       0f,
-                                       Vector2.Zero,
-                                       this.effect,
-                                       0f);              
+            this.iAnimatedSprite.Game.SpriteBatch.Draw(this.iAnimatedSprite.Texture,
+                                              this.destinationRectangle,
+                                              this.sourceRectangle,
+                                              Color.White,
+                                              0f,
+                                              Vector2.Zero,
+                                              this.effect,
+                                              0f);              
         }
     }
 }
