@@ -18,14 +18,15 @@ namespace PyramidPanic
         private PyramidPanic game;
         private IEntityState state;
         private Texture2D texture;
-        private int speed = 3;
+        private int speed = 2;
         private Vector2 position;
 
         //Maak van iedere toestand (state) een field
         //private ExplorerWalkUp walkUp;
-        //private ExplorerWalkDown walkDown;
-        //private ExplorerWalkLeft walkLeft;
+        private ExplorerWalkDown walkDown;
+        private ExplorerWalkLeft walkLeft;
         private ExplorerWalkRight walkRight;
+        private ExplorerIdle idle;
 
         //properties
         /*
@@ -33,18 +34,22 @@ namespace PyramidPanic
         {
             get { return this.walkUp; }
         }
+        */
         public ExplorerWalkDown WalkDown
         {
             get { return this.walkDown; }
         }
         public ExplorerWalkLeft WalkLeft
         {
-            get { return this.walkLeft;}
+            get { return this.walkLeft; }
         }
-        */
         public ExplorerWalkRight WalkRight
         {
             get { return this.walkRight;}
+        }
+        public ExplorerIdle Idle
+        {
+            get { return this.idle; }
         }
         public Vector2 Position
         {
@@ -74,11 +79,12 @@ namespace PyramidPanic
             this.game = game;
             this.position = position;
             this.texture = game.Content.Load<Texture2D>(@"Explorer\Explorer");
-            this.walkUp = new ExplorerWalkUp(this);
+            //this.walkUp = new ExplorerWalkUp(this);
             this.walkDown = new ExplorerWalkDown(this);
             this.walkLeft = new ExplorerWalkLeft(this);
             this.walkRight = new ExplorerWalkRight(this);
-            this.state = this.walkRight;
+            this.idle = new ExplorerIdle(this);
+            this.state = this.idle;
         }
 
         //Update

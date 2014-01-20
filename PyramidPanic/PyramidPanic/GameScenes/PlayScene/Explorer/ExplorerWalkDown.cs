@@ -15,21 +15,22 @@ namespace PyramidPanic
     // Dit is een toestands class (dus moet hij de interface implementeren)
     // Deze class belooft dan plechtig dat hij de methods uit de interface heeft (toepast)
     
-    public class ExplorerWalkRight : AnimatedSprite, IEntityState
+    public class ExplorerWalkDown : AnimatedSprite, IEntityState
     {
         //Fields
         private Explorer explorer;
         private Vector2 velocity;
 
         //Contstructor
-        public ExplorerWalkRight(Explorer explorer) : base(explorer)
+        public ExplorerWalkDown(Explorer explorer) : base(explorer)
         {
             this.explorer = explorer;
             this.destinationRectangle = new Rectangle((int)this.explorer.Position.X,
                                                       (int)this.explorer.Position.Y,
                                                       32,
                                                       32);
-            this.velocity = new Vector2(this.explorer.Speed, 0f);
+            this.velocity = new Vector2(0f, this.explorer.Speed);
+            this.rotation = (float)Math.PI / 2;
         }
 
         public void Initialize()
@@ -42,7 +43,7 @@ namespace PyramidPanic
         {
             // Deze code zorgt ervoor dat de explorer niet buiten de rechterrand
             // kan lopen.
-            if (this.explorer.Position.X > 640 - 32)
+            if (this.explorer.Position.Y > 480 - 32)
             {
                 //Breng de explorer in de toestand Idle
                 this.explorer.State = this.explorer.Idle;
@@ -54,12 +55,14 @@ namespace PyramidPanic
 
             // Als de Right knop wordt losgelaten, dan moet de 
             // explorer weer in de toestand Idle komen
-            if (Input.EdgeDetectKeyUp(Keys.Right))
+            if (Input.EdgeDetectKeyUp(Keys.Down))
             {
                 this.explorer.State = this.explorer.Idle;
                 this.explorer.Idle.Initialize();
                 this.explorer.Idle.Effect = SpriteEffects.None;
+                this.explorer.Idle.Rotation = (float)Math.PI / 2;
             }
+
             this.explorer.Position += this.velocity;
             this.destinationRectangle.X = (int)this.explorer.Position.X;
             this.destinationRectangle.Y = (int)this.explorer.Position.Y;
