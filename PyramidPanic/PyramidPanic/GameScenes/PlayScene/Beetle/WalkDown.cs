@@ -19,6 +19,7 @@ namespace PyramidPanic
     {
         //Fields
         private Beetle beetle;
+        private Vector2 velocity;
 
         //Contstructor
         public WalkDown(Beetle beetle) : base(beetle)
@@ -29,6 +30,7 @@ namespace PyramidPanic
                                                       (int)this.beetle.Position.Y,
                                                       32,
                                                       32);
+            this.velocity = new Vector2(0f, this.beetle.Speed);
         }
 
         public void Initialize()
@@ -44,7 +46,7 @@ namespace PyramidPanic
                 this.beetle.State = new WalkUp(this.beetle);
                 this.beetle.WalkUp.Initialize();
             }
-            this.beetle.Position += new Vector2(0f, this.beetle.Speed);
+            this.beetle.Position += this.velocity;
             this.destinationRectangle.X = (int)this.beetle.Position.X;
             this.destinationRectangle.Y = (int)this.beetle.Position.Y;
             base.Update(gameTime);
