@@ -73,7 +73,7 @@ namespace PyramidPanic
                 this.explorer.Idle.Effect = SpriteEffects.None;
                 this.explorer.Idle.Rotation = (float)Math.PI / 2;
             }
-
+           
             // Zorgt voor de animatie. Roept de Update(GameTime gameTim) method aan van 
             // de AnimatedSprite class
             base.Update(gameTime);

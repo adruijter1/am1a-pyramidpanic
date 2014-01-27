@@ -20,6 +20,7 @@ namespace PyramidPanic
         private Texture2D texture;
         private int speed = 2;
         private Vector2 position;
+        
 
         //Maak van iedere toestand (state) een field
         //private ExplorerWalkUp walkUp;
@@ -30,12 +31,9 @@ namespace PyramidPanic
         private ExplorerIdleWalk idleWalk;
 
         //properties
-        /*
-        public ExplorerWalkUp WalkUp
-        {
-            get { return this.walkUp; }
-        }
-        */
+        
+        
+        
         public ExplorerWalkDown WalkDown
         {
             get { return this.walkDown; }
