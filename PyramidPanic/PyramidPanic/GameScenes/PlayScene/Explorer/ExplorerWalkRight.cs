@@ -42,13 +42,15 @@ namespace PyramidPanic
         {
             // Deze code zorgt ervoor dat de explorer niet buiten de rechterrand
             // kan lopen.
-            if (this.explorer.Position.X > 640 - 32)
+            this.explorer.Position += this.velocity;
+
+            if (this.explorer.Position.X > 640 - 16)
             {
-                //Breng de explorer in de toestand Idle
-                this.explorer.State = this.explorer.Idle;
-                this.explorer.Idle.Initialize();
-                this.explorer.Idle.Effect = SpriteEffects.None;
+                //Breng de explorer in de toestand IdleWalk
                 this.explorer.Position -= this.velocity;
+                this.explorer.State = this.explorer.IdleWalk;
+                this.explorer.IdleWalk.Effect = SpriteEffects.None;
+                this.explorer.IdleWalk.Rotation = 0f;
             }
             
 
@@ -57,12 +59,10 @@ namespace PyramidPanic
             if (Input.EdgeDetectKeyUp(Keys.Right))
             {
                 this.explorer.State = this.explorer.Idle;
-                this.explorer.Idle.Initialize();
                 this.explorer.Idle.Effect = SpriteEffects.None;
+                this.explorer.Idle.Rotation = 0f;
             }
-            this.explorer.Position += this.velocity;
-            this.destinationRectangle.X = (int)this.explorer.Position.X;
-            this.destinationRectangle.Y = (int)this.explorer.Position.Y;
+            
             base.Update(gameTime);
         }
 
