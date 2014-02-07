@@ -6,7 +6,6 @@ Content\StartScene\Button_scores.xnb
 Content\StartScene\Button_quit.xnb
 Content\StartScene\Button_start.xnb
 Content\Scorpion\Scorpion.xnb
-Content\Beetle\Beetle.xnb
 Content\Explorer\Explorer.xnb
 Content\Block\Block.xnb
 Content\Block\Block_hor.xnb
@@ -14,3 +13,6 @@ Content\Block\Block_vert.xnb
 Content\Block\Door.xnb
 Content\Block\Wall1.xnb
 Content\Block\Wall2.xnb
+Content\Beetle\Beetle.xnb
+Content\Block\Transparant.xnb
+Content\Level\0.txt
