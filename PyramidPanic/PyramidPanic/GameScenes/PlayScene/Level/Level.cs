@@ -22,6 +22,7 @@ namespace PyramidPanic
         private Stream stream;
         private List<String> lines;
         private Block[,] blocks;
+        private Image background;
 
         // Properties
         public PyramidPanic Game
@@ -52,6 +53,9 @@ namespace PyramidPanic
         // Draw
         public void Draw(GameTime gameTime)
         {
+            // Teken eerst de achtergrond.
+            this.background.Draw(gameTime);
+            
             // Het blocks-array wordt getekend
             for (int row = 0; row < this.blocks.GetLength(1); row++)
             {
@@ -114,7 +118,20 @@ namespace PyramidPanic
             switch (blockElement)
             {
                 case 'x':
-                    return new Block(this.game, @"Block\Block", new Vector2(x, y)); 
+                    return new Block(this.game, @"Block\Block", new Vector2(x, y));
+                case 'y':
+                    return new Block(this.game, @"Block\Wall1", new Vector2(x, y));
+                case 'z':
+                    return new Block(this.game, @"Block\Wall2", new Vector2(x, y));
+                case 'v':
+                    return new Block(this.game, @"Block\Block_hor", new Vector2(x, y));
+                case 'w':
+                    return new Block(this.game, @"Block\Block_vert", new Vector2(x, y));
+                case 'u':
+                    return new Block(this.game, @"Block\Door", new Vector2(x, y));
+                case '@':
+                    this.background = new Image(this.game, @"Background\Background2", new Vector2(x, y));
+                    return new Block(this.game, @"Block\Block", new Vector2(x, y));
                 case '.':
                     return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
                 default:

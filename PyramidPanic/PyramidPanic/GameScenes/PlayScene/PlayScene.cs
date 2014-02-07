@@ -79,6 +79,7 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.game.GraphicsDevice.Clear(Color.Pink);
+            this.level.Draw(gameTime);
             this.beetle.Draw(gameTime);
             this.beetle1.Draw(gameTime);
             this.scorpion.Draw(gameTime);
@@ -90,7 +91,6 @@ namespace PyramidPanic
             this.block4.Draw(gameTime);
             this.block5.Draw(gameTime);
             this.block6.Draw(gameTime);
-            this.level.Draw(gameTime);
         }
     }
 }
