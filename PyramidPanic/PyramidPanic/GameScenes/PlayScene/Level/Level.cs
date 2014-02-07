@@ -23,6 +23,8 @@ namespace PyramidPanic
         private List<String> lines;
         private Block[,] blocks;
         private Image background;
+        private Explorer explorer;
+        private List<Scorpion> scorpions;
 
         // Properties
         public PyramidPanic Game
@@ -47,7 +49,17 @@ namespace PyramidPanic
 
 
         // Update
-
+        public void Update(GameTime gameTime)
+        {
+            // We roepen de Update-method aan van de Scorpion-objecten
+            foreach (Scorpion scorpion in this.scorpions)
+            {
+                scorpion.Update(gameTime);
+            }
+            
+            // We roepen de Update method aan van de explorer zodat hij gaat bewegen
+            this.explorer.Update(gameTime);
+        }
 
 
         // Draw
@@ -64,10 +76,21 @@ namespace PyramidPanic
                     this.blocks[column, row].Draw(gameTime);
                 }
             }
+            // Teken de scorpions
+            foreach (Scorpion scorpion in this.scorpions)
+            {
+                scorpion.Draw(gameTime);
+            }
+
+            // De explorer wordt getekend
+            this.explorer.Draw(gameTime);
         }
 
         private void LoadAssets()
         {
+            // Maak een list<Scorpion> waarin we scorpion-objecten in kunnen opslaan
+            this.scorpions = new List<Scorpion>();
+            
             // Deze list van strings slaat elke regel van 0.txt op
             this.lines = new List<string>();
             
@@ -117,6 +140,12 @@ namespace PyramidPanic
         {
             switch (blockElement)
             {
+                case 's':
+                    this.scorpions.Add(new Scorpion(this.game, new Vector2(x + 16f, y + 16f)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));        
+                case 'E':
+                    this.explorer = new Explorer(this.game, new Vector2(x + 16f, y + 16f));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));                
                 case 'x':
                     return new Block(this.game, @"Block\Block", new Vector2(x, y));
                 case 'y':

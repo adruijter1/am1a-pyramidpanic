@@ -1,5 +1,5 @@
 @xyxuxyxyzyxuuxyxuxy
-x..................u
+x...E...s..........u
 z.xxxxx....xxxxxxx.z
 y.......xx.......x.u
 x.xxxxx..x.xxxxxxx.y
@@ -11,5 +11,5 @@ y.x......x......x..u
 x.xxxxxx.xxxxxx.xx.y
 z......x.........x.x
 y.xxxxxx.xxxx.xxxx.z
-z..................x
+z....s.............x
 xzzxyzzxzuxzxyuxzuxz

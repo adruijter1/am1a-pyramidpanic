@@ -18,7 +18,7 @@ namespace PyramidPanic
         private PyramidPanic game;
         private Beetle beetle, beetle1;
         private Scorpion scorpion, scorpion1;
-        private Explorer explorer;
+        
         private Block block1;
         private Block block2;
         private Block block3;
@@ -49,7 +49,7 @@ namespace PyramidPanic
             this.beetle1 = new Beetle(this.game, new Vector2(400f, 100f));
             this.scorpion = new Scorpion(this.game, new Vector2(300f, 188f));
             this.scorpion1 = new Scorpion(this.game, new Vector2(188f, 300f));
-            this.explorer = new Explorer(this.game, new Vector2(304f, 240f));
+           
             this.block1 = new Block(this.game, @"Block\Block", new Vector2(0f, 0f));
             this.block2 = new Block(this.game, @"Block\Wall1", new Vector2(32f, 0f));
             this.block3 = new Block(this.game, @"Block\Wall2", new Vector2(64f, 0f));
@@ -67,11 +67,14 @@ namespace PyramidPanic
             {
                 this.game.IState = this.game.StartScene;
             }
+            // Roep de Update-method aan van de Level-class
+            this.level.Update(gameTime);
+
             this.beetle.Update(gameTime);
             this.beetle1.Update(gameTime);
             this.scorpion.Update(gameTime);
             this.scorpion1.Update(gameTime);
-            this.explorer.Update(gameTime);
+            
         }
 
         // Draw methode. Deze methode wordt normaal 60 maal per seconde aangeroepen en
@@ -84,7 +87,7 @@ namespace PyramidPanic
             this.beetle1.Draw(gameTime);
             this.scorpion.Draw(gameTime);
             this.scorpion1.Draw(gameTime);
-            this.explorer.Draw(gameTime);
+           
             this.block1.Draw(gameTime);
             this.block2.Draw(gameTime);
             this.block3.Draw(gameTime);
