@@ -25,6 +25,7 @@ namespace PyramidPanic
         //Maak van iedere toestand (state) een field
         //private ExplorerWalkUp walkUp;
         private ExplorerWalkDown walkDown;
+        private ExplorerWalkUp walkUp;
         private ExplorerWalkLeft walkLeft;
         private ExplorerWalkRight walkRight;
         private ExplorerIdle idle;
@@ -37,6 +38,10 @@ namespace PyramidPanic
         public ExplorerWalkDown WalkDown
         {
             get { return this.walkDown; }
+        }
+        public ExplorerWalkUp WalkUp
+        {
+            get { return this.walkUp; }
         }
         public ExplorerWalkLeft WalkLeft
         {
@@ -90,6 +95,7 @@ namespace PyramidPanic
             this.texture = game.Content.Load<Texture2D>(@"Explorer\Explorer");
             //this.walkUp = new ExplorerWalkUp(this);
             this.walkDown = new ExplorerWalkDown(this);
+            this.walkUp = new ExplorerWalkUp(this);
             this.walkLeft = new ExplorerWalkLeft(this);
             this.walkRight = new ExplorerWalkRight(this);
             this.idle = new ExplorerIdle(this);
