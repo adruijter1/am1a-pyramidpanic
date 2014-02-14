@@ -15,16 +15,7 @@ namespace PyramidPanic
     public class PlayScene : IState
     {
         //Fields van de class PlayScene
-        private PyramidPanic game;
-        private Beetle beetle, beetle1;
-        private Scorpion scorpion, scorpion1;
-        
-        private Block block1;
-        private Block block2;
-        private Block block3;
-        private Block block4;
-        private Block block5;
-        private Block block6;
+        private PyramidPanic game;      
         private Level level;
 
         // Constructor van de StartScene-class krijgt een object game mee van het type PyramidPanic
@@ -45,17 +36,6 @@ namespace PyramidPanic
         // classes.
         public void LoadContent()
         {
-            this.beetle = new Beetle(this.game, new Vector2(100f, 300f));
-            this.beetle1 = new Beetle(this.game, new Vector2(400f, 100f));
-            this.scorpion = new Scorpion(this.game, new Vector2(300f, 188f));
-            this.scorpion1 = new Scorpion(this.game, new Vector2(188f, 300f));
-           
-            this.block1 = new Block(this.game, @"Block\Block", new Vector2(0f, 0f));
-            this.block2 = new Block(this.game, @"Block\Wall1", new Vector2(32f, 0f));
-            this.block3 = new Block(this.game, @"Block\Wall2", new Vector2(64f, 0f));
-            this.block4 = new Block(this.game, @"Block\Door", new Vector2(96f, 0f));
-            this.block5 = new Block(this.game, @"BLock\Block_hor", new Vector2(128f, 0f));
-            this.block6 = new Block(this.game, @"Block\Block_vert", new Vector2(160f, 0f));
             this.level = new Level(this.game, 0);
         }
 
@@ -68,13 +48,7 @@ namespace PyramidPanic
                 this.game.IState = this.game.StartScene;
             }
             // Roep de Update-method aan van de Level-class
-            this.level.Update(gameTime);
-
-            this.beetle.Update(gameTime);
-            this.beetle1.Update(gameTime);
-            this.scorpion.Update(gameTime);
-            this.scorpion1.Update(gameTime);
-            
+            this.level.Update(gameTime);                      
         }
 
         // Draw methode. Deze methode wordt normaal 60 maal per seconde aangeroepen en
@@ -83,17 +57,6 @@ namespace PyramidPanic
         {
             this.game.GraphicsDevice.Clear(Color.Pink);
             this.level.Draw(gameTime);
-            this.beetle.Draw(gameTime);
-            this.beetle1.Draw(gameTime);
-            this.scorpion.Draw(gameTime);
-            this.scorpion1.Draw(gameTime);
-           
-            this.block1.Draw(gameTime);
-            this.block2.Draw(gameTime);
-            this.block3.Draw(gameTime);
-            this.block4.Draw(gameTime);
-            this.block5.Draw(gameTime);
-            this.block6.Draw(gameTime);
         }
     }
 }

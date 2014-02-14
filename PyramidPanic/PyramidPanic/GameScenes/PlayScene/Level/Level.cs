@@ -26,6 +26,9 @@ namespace PyramidPanic
         private Explorer explorer;
         private List<Scorpion> scorpions;
 
+        // In deze list worden de beetles opgeslagen
+        private List<Beetle> beetles;
+
         // Properties
         public PyramidPanic Game
         {
@@ -56,6 +59,12 @@ namespace PyramidPanic
             {
                 scorpion.Update(gameTime);
             }
+
+            // We roepen de Update-method aan van de Beetle-class
+            foreach (Beetle beetle in this.beetles)
+            {
+                beetle.Update(gameTime);
+            }
             
             // We roepen de Update method aan van de explorer zodat hij gaat bewegen
             this.explorer.Update(gameTime);
@@ -82,6 +91,12 @@ namespace PyramidPanic
                 scorpion.Draw(gameTime);
             }
 
+            // Teken de beetles
+            foreach (Beetle beetle in this.beetles)
+            {
+                beetle.Draw(gameTime);
+            }
+
             // De explorer wordt getekend
             this.explorer.Draw(gameTime);
         }
@@ -90,7 +105,10 @@ namespace PyramidPanic
         {
             // Maak een list<Scorpion> waarin we scorpion-objecten in kunnen opslaan
             this.scorpions = new List<Scorpion>();
-            
+
+            // Maak een list<Beetle> waarin we beetle-objecten in kunnen opslaan
+            this.beetles = new List<Beetle>();
+
             // Deze list van strings slaat elke regel van 0.txt op
             this.lines = new List<string>();
             
@@ -142,7 +160,10 @@ namespace PyramidPanic
             {
                 case 's':
                     this.scorpions.Add(new Scorpion(this.game, new Vector2(x + 16f, y + 16f)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));        
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
+                case 'b':
+                    this.beetles.Add(new Beetle(this.game, new Vector2(x + 16f, y + 16f)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));                
                 case 'E':
                     this.explorer = new Explorer(this.game, new Vector2(x + 16f, y + 16f));
                     return new Block(this.game, @"Block\Transparant", new Vector2(x, y));                
