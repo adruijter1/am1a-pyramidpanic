@@ -61,7 +61,7 @@ namespace PyramidPanic
                                               this.rotation,
                                               this.pivot,
                                               this.effect,
-                                              0f);              
+                                              0f);   
         }
     }
 }
