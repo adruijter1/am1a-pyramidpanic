@@ -29,6 +29,9 @@ namespace PyramidPanic
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
 
+        // In deze list worden de treasures opgeslagen. Het zijn Image-objecten
+        private List<Image> treasures;
+
         // Properties
         public PyramidPanic Game
         {
@@ -85,6 +88,13 @@ namespace PyramidPanic
                     this.blocks[column, row].Draw(gameTime);
                 }
             }
+           
+            // Teken alle Image objecten in de treasureslist
+            foreach (Image treasure in this.treasures)
+            {
+                treasure.Draw(gameTime);
+            }
+
             // Teken de scorpions
             foreach (Scorpion scorpion in this.scorpions)
             {
@@ -103,11 +113,14 @@ namespace PyramidPanic
 
         private void LoadAssets()
         {
-            // Maak een list<Scorpion> waarin we scorpion-objecten in kunnen opslaan
+            // Maak een list<Scorpion> waarin we scorpion-objecten in kunnen opslaan.
             this.scorpions = new List<Scorpion>();
 
-            // Maak een list<Beetle> waarin we beetle-objecten in kunnen opslaan
+            // Maak een list<Beetle> waarin we beetle-objecten in kunnen opslaan.
             this.beetles = new List<Beetle>();
+
+            // Maak een list<Image> waarin we de treasures in op kunnen slaan.
+            this.treasures = new List<Image>();
 
             // Deze list van strings slaat elke regel van 0.txt op
             this.lines = new List<string>();
@@ -163,7 +176,19 @@ namespace PyramidPanic
                     return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
                 case 'b':
                     this.beetles.Add(new Beetle(this.game, new Vector2(x + 16f, y + 16f)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));                
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
+                case 'c':
+                    this.treasures.Add(new Image(this.game, @"Treasures\Cat", new Vector2(x, y)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
+                case 'a':
+                    this.treasures.Add(new Image(this.game, @"Treasures\Ankh", new Vector2(x, y)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
+                case 'S':
+                    this.treasures.Add(new Image(this.game, @"Treasures\Scarab", new Vector2(x, y)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
+                case 'p':
+                    this.treasures.Add(new Image(this.game, @"Treasures\potion", new Vector2(x, y)));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y));
                 case 'E':
                     this.explorer = new Explorer(this.game, new Vector2(x + 16f, y + 16f));
                     return new Block(this.game, @"Block\Transparant", new Vector2(x, y));                
