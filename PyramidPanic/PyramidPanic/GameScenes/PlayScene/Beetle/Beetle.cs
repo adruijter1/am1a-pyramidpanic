@@ -20,6 +20,8 @@ namespace PyramidPanic
         private Texture2D texture;
         private int speed = 2;
         private Vector2 position;
+        private int bottomBorder;
+        private int topBorder;
 
         //Maak van iedere toestand (state) een field
         private WalkUp walkUp;
@@ -54,6 +56,16 @@ namespace PyramidPanic
         public Texture2D Texture
         {
             get { return this.texture; }
+        }
+        public int BottomBorder
+        {
+            get { return this.bottomBorder; }
+            set { this.bottomBorder = value; }
+        }
+        public int TopBorder
+        {
+            get { return this.topBorder; }
+            set { this.topBorder = value; }
         }
         
         //Constructor

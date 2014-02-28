@@ -45,6 +45,10 @@ namespace PyramidPanic
         {
             get { return this.scorpions; }
         }
+        public List<Beetle> Beetles
+        {
+            get { return this.beetles; }
+        }
         public Block[,] Blocks
         {
             get { return this.blocks; }
@@ -175,6 +179,7 @@ namespace PyramidPanic
             }
 
             ScorpionManager.Level = this;
+            BeetleManager.Level = this;
         }
 
         public Block LoadBlock(char blockElement, int x, int y)
