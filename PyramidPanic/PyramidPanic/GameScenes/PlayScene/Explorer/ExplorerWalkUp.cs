@@ -58,11 +58,27 @@ namespace PyramidPanic
 
             // Als de Right knop wordt losgelaten, dan moet de 
             // explorer weer in de toestand Idle komen
-            if (Input.EdgeDetectKeyUp(Keys.Up))
+            if (Input.LevelDetectKeyUp(Keys.Up))
             {
-                this.explorer.State = this.explorer.Idle;
-                this.explorer.Idle.Effect = SpriteEffects.FlipHorizontally;
-                this.explorer.Idle.Rotation = (float)Math.PI / 2;
+                // Bereken de modulo waarde 32 van de x-positie van de explorer
+                int modulo = (int)this.explorer.Position.Y % 32;
+                Console.WriteLine((int)this.explorer.Position.Y);
+                Console.WriteLine(modulo);
+
+                //Check of de modulo waarde al groter of gelijk aan 30 is
+                // Als dat niet geval is niet stoppen, anders wel stoppen
+                if (modulo <= 16 + this.explorer.Speed && modulo >= 16)
+                {
+                    // Zet de laatste stap op zijn grid
+                    int geheelAantalmalen32 = (int)(this.explorer.Position.Y / 32);
+                    Console.WriteLine(geheelAantalmalen32);
+                    this.explorer.Position = new Vector2(this.explorer.Position.X,
+                                                         (geheelAantalmalen32 + 1) * 32 - 16);
+                    
+                    this.explorer.State = this.explorer.Idle;
+                    this.explorer.Idle.Effect = SpriteEffects.FlipHorizontally;
+                    this.explorer.Idle.Rotation = (float)Math.PI / 2;                    
+                } 
             }
 
             
