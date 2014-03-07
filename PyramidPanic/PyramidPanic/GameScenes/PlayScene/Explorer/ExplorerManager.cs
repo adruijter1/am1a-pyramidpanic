@@ -56,8 +56,11 @@ namespace PyramidPanic
                     {
                         // Onderzoek of de rectangles van het BlockElement en de Explorer
                         // elkaar overlappen. Geef dan de waarde true terug anders false
-                        //if ( explorer.
-
+                        if (explorer.CollisionRect.Intersects(level.Blocks[i, j].Rectangle))
+                        {
+                            //Console.WriteLine("Ik raak een muur element i = " + i + " j = " + j);
+                            return true;
+                        }
                     }
                 }
             } 

@@ -34,9 +34,10 @@ namespace PyramidPanic
         private ExplorerIdleWalk idleWalk;
 
         //properties
-        
-        
-        
+        public Rectangle CollisionRect
+        {
+            get { return this.collisionRect; }
+        }
         public ExplorerWalkDown WalkDown
         {
             get { return this.walkDown; }
@@ -118,7 +119,7 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.state.Draw(gameTime);
-            this.game.SpriteBatch.Draw(this.collisionText, this.collisionRect, new Color(255, 0, 0, 0));     
+            //this.game.SpriteBatch.Draw(this.collisionText, this.collisionRect, new Color(255, 0, 0, 0));     
         }
     }
 }

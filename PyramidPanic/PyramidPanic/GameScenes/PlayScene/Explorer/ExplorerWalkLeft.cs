@@ -45,6 +45,15 @@ namespace PyramidPanic
             // kan lopen.
             this.explorer.Position -= this.velocity;
 
+            // Als de explorer tegen een block instantie aanloopt waarvan
+            // de Passable property op false staat, kan hij er niet daarheen
+            if (ExplorerManager.CollisionDectectionExplorerWalls())
+            {
+                // Ze de explorer weer terug
+                this.explorer.Position += this.velocity;
+            }
+
+
             if (this.explorer.Position.X < 16 )
             {
                 //Breng de explorer in de toestand Idle
@@ -60,8 +69,8 @@ namespace PyramidPanic
             {
                 // Bereken de modulo waarde 32 van de x-positie van de explorer
                 int modulo = (int)this.explorer.Position.X % 32;
-                Console.WriteLine((int)this.explorer.Position.X);
-                Console.WriteLine(modulo);
+                //Console.WriteLine((int)this.explorer.Position.X);
+                //Console.WriteLine(modulo);
 
                 //Check of de modulo waarde al groter of gelijk aan 30 is
                 // Als dat niet geval is niet stoppen, anders wel stoppen
@@ -69,7 +78,7 @@ namespace PyramidPanic
                 {
                     // Zet de laatste stap op zijn grid
                     int geheelAantalmalen32 = (int)(this.explorer.Position.X / 32);
-                    Console.WriteLine(geheelAantalmalen32);
+                    //Console.WriteLine(geheelAantalmalen32);
                     this.explorer.Position = new Vector2((geheelAantalmalen32 + 1) * 32 - 16,
                                                           this.explorer.Position.Y);
 
