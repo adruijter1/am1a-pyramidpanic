@@ -33,6 +33,11 @@ namespace PyramidPanic
         private List<Image> treasures;
 
         // Properties
+        public List<Image> Treasures
+        {
+            get { return this.treasures; }
+            set { this.treasures = value; }
+        }
         public PyramidPanic Game
         {
             get { return this.game; }
@@ -53,6 +58,7 @@ namespace PyramidPanic
         {
             get { return this.blocks; }
         }
+
 
         // Constructor
         public Level(PyramidPanic game, int levelIndex)
