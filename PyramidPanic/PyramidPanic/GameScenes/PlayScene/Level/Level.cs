@@ -180,6 +180,8 @@ namespace PyramidPanic
 
             ScorpionManager.Level = this;
             BeetleManager.Level = this;
+            ExplorerManager.Level = this;
+            ExplorerManager.Explorer = this.explorer;
         }
 
         public Block LoadBlock(char blockElement, int x, int y)
