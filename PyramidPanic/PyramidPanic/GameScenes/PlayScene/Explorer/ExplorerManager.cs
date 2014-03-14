@@ -75,9 +75,56 @@ namespace PyramidPanic
                 if (explorer.CollisionRect.Intersects(image.Rectangle))
                 {
                     level.Treasures.Remove(image);
+                    switch(image.Character)
+                    {
+                        case 'c':
+                            Score.Points += 100;
+                            break;
+                        case 'a':
+                            Score.Points += 10;
+                            break;
+                        case 'S':
+                            Score.Points += 50;
+                            Score.Scarabs += 1;
+                            break;
+                        case 'p':
+                            Score.Lives += 1;
+                            break;
+                    }
                     break;
                 }
             }
         }
+    
+        // CollisionDetection tussen de explorer en de Scorpions
+        public static void CollisionDetectScorpions()
+        {
+            foreach (Scorpion scorpion in level.Scorpions)
+            {
+                if (explorer.CollisionRect.Intersects(scorpion.CollisionRect))
+                {
+                    level.Scorpions.Remove(scorpion);
+                    Score.Lives--;
+                    explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                    break;
+                }
+            }
+        }
+
+        // CollisionDetection tussen de explorer en de Beetles
+        public static void CollisionDetectBeetles()
+        {
+            foreach (Beetle beetle in level.Beetles)
+            {
+                if (explorer.CollisionRect.Intersects(beetle.CollisionRect))
+                {
+                    level.Beetles.Remove(beetle);
+                    Score.Lives--;
+                    explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                    break;
+                }
+            }
+        }   
+    
     }
 }

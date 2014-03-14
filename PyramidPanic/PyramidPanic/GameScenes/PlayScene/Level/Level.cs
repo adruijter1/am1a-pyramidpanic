@@ -26,6 +26,9 @@ namespace PyramidPanic
         private Explorer explorer;
         private List<Scorpion> scorpions;
         private Panel panel;
+        private ILevel state;
+        private LevelPause pause;
+        private LevelPlay play;
 
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
@@ -34,6 +37,29 @@ namespace PyramidPanic
         private List<Image> treasures;
 
         // Properties
+        // Maak een property voor de Explorer
+        public Explorer Explorer
+        {
+            get { return this.explorer; }
+        }
+
+        // Maak een property voor de state field
+        public ILevel State
+        {
+            get { return this.state;  }
+            set { this.state = value; }
+        }
+        public LevelPause Pause
+        {
+            get { return this.pause; }
+            set { this.pause = value; }
+        }
+        public LevelPlay Play
+        {
+            get { return this.play; }
+            set { this.play = value; }
+        }
+
         public List<Image> Treasures
         {
             get { return this.treasures; }
@@ -65,7 +91,9 @@ namespace PyramidPanic
         {
             this.game = game;
             this.levelIndex = levelIndex;
-
+            this.pause = new LevelPause(this);
+            this.play = new LevelPlay(this);
+            this.state = this.pause;
             //Laad het textbestand met behulp van een stream object
             this.stream = TitleContainer.OpenStream(@"Content\Level\0.txt");
             this.LoadAssets();
@@ -75,20 +103,7 @@ namespace PyramidPanic
         // Update
         public void Update(GameTime gameTime)
         {
-            // We roepen de Update-method aan van de Scorpion-objecten
-            foreach (Scorpion scorpion in this.scorpions)
-            {
-                scorpion.Update(gameTime);
-            }
-
-            // We roepen de Update-method aan van de Beetle-class
-            foreach (Beetle beetle in this.beetles)
-            {
-                beetle.Update(gameTime);
-            }
-            
-            // We roepen de Update method aan van de explorer zodat hij gaat bewegen
-            this.explorer.Update(gameTime);
+            this.state.Update(gameTime);
         }
 
 
@@ -129,6 +144,7 @@ namespace PyramidPanic
 
             // De explorer wordt getekend
             this.explorer.Draw(gameTime);
+            this.state.Draw(gameTime);
         }
 
         private void LoadAssets()
@@ -198,47 +214,47 @@ namespace PyramidPanic
             {
                 case 's':
                     this.scorpions.Add(new Scorpion(this.game, new Vector2(x + 16f, y + 16f)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'b':
                     this.beetles.Add(new Beetle(this.game, new Vector2(x + 16f, y + 16f)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'c':
-                    this.treasures.Add(new Image(this.game, @"Treasures\Cat", new Vector2(x, y)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    this.treasures.Add(new Image(this.game, @"Treasures\Cat", new Vector2(x, y), 'c'));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'a':
-                    this.treasures.Add(new Image(this.game, @"Treasures\Ankh", new Vector2(x, y)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    this.treasures.Add(new Image(this.game, @"Treasures\Ankh", new Vector2(x, y), 'a'));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'S':
-                    this.treasures.Add(new Image(this.game, @"Treasures\Scarab", new Vector2(x, y)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    this.treasures.Add(new Image(this.game, @"Treasures\Scarab", new Vector2(x, y), 'S'));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'p':
-                    this.treasures.Add(new Image(this.game, @"Treasures\potion", new Vector2(x, y)));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    this.treasures.Add(new Image(this.game, @"Treasures\potion", new Vector2(x, y), 'p'));
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case 'E':
                     this.explorer = new Explorer(this.game, new Vector2(x + 16f, y + 16f));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);                
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');                
                 case 'x':
-                    return new Block(this.game, @"Block\Block", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Block", new Vector2(x, y), false, 'x');
                 case 'y':
-                    return new Block(this.game, @"Block\Wall1", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Wall1", new Vector2(x, y), false, 'y');
                 case 'z':
-                    return new Block(this.game, @"Block\Wall2", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Wall2", new Vector2(x, y), false, 'z');
                 case 'v':
-                    return new Block(this.game, @"Block\Block_hor", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Block_hor", new Vector2(x, y), false, 'v');
                 case 'w':
-                    return new Block(this.game, @"Block\Block_vert", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Block_vert", new Vector2(x, y), false, 'w');
                 case 'u':
-                    return new Block(this.game, @"Block\Door", new Vector2(x, y), false);
+                    return new Block(this.game, @"Block\Door", new Vector2(x, y), false, 'u');
                 case '@':
-                    this.background = new Image(this.game, @"Background\Background2", new Vector2(x, y));
-                    return new Block(this.game, @"Block\Block", new Vector2(x, y), false);
+                    this.background = new Image(this.game, @"Background\Background2", new Vector2(x, y), '@');
+                    return new Block(this.game, @"Block\Block", new Vector2(x, y), false, 'x');
                 case 'P':
                     this.panel = new Panel(this.game, new Vector2(x, y));
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 case '.':
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true);
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
                 default:
-                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true );
+                    return new Block(this.game, @"Block\Transparant", new Vector2(x, y), true, '.');
             }
         }
     }

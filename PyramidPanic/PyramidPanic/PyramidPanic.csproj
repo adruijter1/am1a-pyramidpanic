@@ -146,9 +146,13 @@
     <Compile Include="GameScenes\PlayScene\Explorer\ExplorerWalkRight.cs" />
     <Compile Include="GameScenes\PlayScene\IEntityState.cs" />
     <Compile Include="GameScenes\PlayScene\Beetle\WalkUp.cs" />
+    <Compile Include="GameScenes\PlayScene\Level\ILevel.cs" />
     <Compile Include="GameScenes\PlayScene\Level\Level.cs" />
+    <Compile Include="GameScenes\PlayScene\Level\LevelPause.cs" />
+    <Compile Include="GameScenes\PlayScene\Level\LevelPlay.cs" />
     <Compile Include="GameScenes\PlayScene\Panel\Panel.cs" />
     <Compile Include="GameScenes\PlayScene\PlayScene.cs" />
+    <Compile Include="GameScenes\PlayScene\Score\Score.cs" />
     <Compile Include="GameScenes\PlayScene\Scorpion\ScorpionManager.cs" />
     <Compile Include="GameScenes\PlayScene\Scorpion\WalkRight.cs" />
     <Compile Include="GameScenes\PlayScene\Scorpion\Scorpion.cs" />

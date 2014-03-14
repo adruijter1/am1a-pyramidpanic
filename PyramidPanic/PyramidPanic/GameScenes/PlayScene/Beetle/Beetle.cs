@@ -27,6 +27,8 @@ namespace PyramidPanic
         private WalkUp walkUp;
         private WalkDown walkDown;
 
+        private Rectangle collisionRect;
+
         //properties
         public WalkUp WalkUp
         {
@@ -67,12 +69,25 @@ namespace PyramidPanic
             get { return this.topBorder; }
             set { this.topBorder = value; }
         }
-        
+        public Rectangle CollisionRect
+        {
+            get
+            {
+                this.collisionRect.Y = (int)this.position.Y - 16;
+                return this.collisionRect; 
+            }
+        }
+
+
         //Constructor
         public Beetle(PyramidPanic game, Vector2 position)
         {
             this.game = game;
             this.position = position;
+            this.collisionRect = new Rectangle((int)this.position.X - 16,
+                                               (int)this.position.Y - 16,
+                                               32,
+                                               32);
             this.texture = game.Content.Load<Texture2D>(@"Beetle\Beetle");
             this.walkUp = new WalkUp(this);
             this.walkDown = new WalkDown(this);
