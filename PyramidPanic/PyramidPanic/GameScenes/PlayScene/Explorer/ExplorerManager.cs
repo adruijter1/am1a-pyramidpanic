@@ -103,10 +103,20 @@ namespace PyramidPanic
             {
                 if (explorer.CollisionRect.Intersects(scorpion.CollisionRect))
                 {
-                    level.State = level.Pause;
-                    level.Scorpions.Remove(scorpion);
-                    Score.Lives--;
-                    explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                    if (level.State.Equals(level.Play))
+                    {
+                        level.State = level.Pause;
+                    }
+                    else
+                    {
+                        level.Scorpions.Remove(scorpion);
+                        Score.Lives--;
+                        explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                        explorer.State = explorer.Idle;
+                        explorer.Idle.Initialize();
+                        explorer.Idle.Rotation = 0f;
+                        explorer.Idle.Effect = SpriteEffects.None;
+                    }
                     break;
                 }
             }
@@ -119,10 +129,20 @@ namespace PyramidPanic
             {
                 if (explorer.CollisionRect.Intersects(beetle.CollisionRect))
                 {
-                    level.State = level.Pause;
-                    level.Beetles.Remove(beetle);
-                    Score.Lives--;
-                    explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                    if (level.State.Equals(level.Play))
+                    {
+                        level.State = level.Pause;
+                    }
+                    else
+                    {
+                        level.Beetles.Remove(beetle);
+                        Score.Lives--;
+                        explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
+                        explorer.State = explorer.Idle;
+                        explorer.Idle.Initialize();
+                        explorer.Idle.Rotation = 0f;
+                        explorer.Idle.Effect = SpriteEffects.None;
+                    }
                     break;
                 }
             }
