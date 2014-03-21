@@ -103,6 +103,7 @@ namespace PyramidPanic
             {
                 if (explorer.CollisionRect.Intersects(scorpion.CollisionRect))
                 {
+                    level.State = level.Pause;
                     level.Scorpions.Remove(scorpion);
                     Score.Lives--;
                     explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
@@ -118,6 +119,7 @@ namespace PyramidPanic
             {
                 if (explorer.CollisionRect.Intersects(beetle.CollisionRect))
                 {
+                    level.State = level.Pause;
                     level.Beetles.Remove(beetle);
                     Score.Lives--;
                     explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);

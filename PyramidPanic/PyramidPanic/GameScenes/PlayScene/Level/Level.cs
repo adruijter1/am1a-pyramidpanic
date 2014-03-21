@@ -93,7 +93,7 @@ namespace PyramidPanic
             this.levelIndex = levelIndex;
             this.pause = new LevelPause(this);
             this.play = new LevelPlay(this);
-            this.state = this.pause;
+            this.state = this.play;
             //Laad het textbestand met behulp van een stream object
             this.stream = TitleContainer.OpenStream(@"Content\Level\0.txt");
             this.LoadAssets();
