@@ -32,14 +32,17 @@ namespace PyramidPanic
         // Update
         public void Update(GameTime gameTime)
         {
-            if (Input.MousePosition().X > 280 &&
+            if ( Input.MousePosition().X > 280 &&
                  Input.MousePosition().X < 360 &&
                  Input.MousePosition().Y > 250 &&
                  Input.MousePosition().Y < 275 &&
-                 Input.EdgeDetectMousePressLeft())
+                 Input.EdgeDetectMousePressLeft() ||
+                 Input.EdgeDetectKeyDown(Keys.Enter))
             {
-                Score.Lives = 3;
+                Score.Initialize();
                 level.Game.IState = level.Game.StartScene;
+                level.State = level.Play;
+                this.level.Initialize(0);
             }           
         }
         

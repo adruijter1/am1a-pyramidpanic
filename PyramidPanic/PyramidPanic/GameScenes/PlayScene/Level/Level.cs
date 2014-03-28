@@ -100,8 +100,13 @@ namespace PyramidPanic
             this.play = new LevelPlay(this);
             this.gameOver = new LevelGameOver(this);
             this.state = this.play;
+            this.Initialize(levelIndex);
+        }
+
+        public void Initialize(int levelIndex)
+        {
             //Laad het textbestand met behulp van een stream object
-            this.stream = TitleContainer.OpenStream(@"Content\Level\0.txt");
+            this.stream = TitleContainer.OpenStream(@"Content\Level\" + levelIndex + ".txt");
             this.LoadAssets();
         }
 

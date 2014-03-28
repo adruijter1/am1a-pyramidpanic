@@ -19,6 +19,16 @@ namespace PyramidPanic
         private static int scarabs = 0;
         private static int lives = 3;
 
+        /* Maak een static method genaamd Initialize() die points = 0, scarabs = 0
+         * en lives = 3 initialiseerd. Deze method roep je static aan: Score.Initialize();
+         */
+        public static void Initialize()
+        {
+            points = 0;
+            scarabs = 0;
+            lives = 3;
+        }
+
         // Properties
         public static int Points
         {
