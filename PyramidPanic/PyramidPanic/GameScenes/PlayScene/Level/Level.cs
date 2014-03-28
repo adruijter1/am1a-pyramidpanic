@@ -29,6 +29,7 @@ namespace PyramidPanic
         private ILevel state;
         private LevelPause pause;
         private LevelPlay play;
+        private LevelGameOver gameOver;
 
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
@@ -58,6 +59,10 @@ namespace PyramidPanic
         {
             get { return this.play; }
             set { this.play = value; }
+        }
+        public LevelGameOver GameOver
+        {
+            get { return this.gameOver; }
         }
 
         public List<Image> Treasures
@@ -93,6 +98,7 @@ namespace PyramidPanic
             this.levelIndex = levelIndex;
             this.pause = new LevelPause(this);
             this.play = new LevelPlay(this);
+            this.gameOver = new LevelGameOver(this);
             this.state = this.play;
             //Laad het textbestand met behulp van een stream object
             this.stream = TitleContainer.OpenStream(@"Content\Level\0.txt");
@@ -103,6 +109,10 @@ namespace PyramidPanic
         // Update
         public void Update(GameTime gameTime)
         {
+            if (Score.Lives == 0)
+            {
+                this.state = this.gameOver;
+            }
             this.state.Update(gameTime);
         }
 
