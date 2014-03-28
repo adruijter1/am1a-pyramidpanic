@@ -51,18 +51,7 @@ namespace PyramidPanic
             {
                 // Ze de explorer weer terug
                 this.explorer.Position -= this.velocity;
-            }
-
-            if (this.explorer.Position.Y > 480 - 16)
-            {
-                //Breng de explorer in de toestand Idle
-                this.explorer.Position -= this.velocity;
-                this.explorer.State = this.explorer.IdleWalk;
-                this.explorer.IdleWalk.Effect = SpriteEffects.None;
-                this.explorer.IdleWalk.Rotation = (float)Math.PI / 2;
-                
-            }
-            
+            }            
 
             // Als de Down knop wordt losgelaten, dan moet de 
             // explorer weer in de toestand Idle komen

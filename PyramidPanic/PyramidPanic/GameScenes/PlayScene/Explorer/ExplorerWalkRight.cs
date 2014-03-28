@@ -53,16 +53,6 @@ namespace PyramidPanic
                 this.explorer.Position -= this.velocity;
             }
 
-            if (this.explorer.Position.X > 640 - 16)
-            {
-                //Breng de explorer in de toestand IdleWalk
-                this.explorer.Position -= this.velocity;
-                this.explorer.State = this.explorer.IdleWalk;
-                this.explorer.IdleWalk.Effect = SpriteEffects.None;
-                this.explorer.IdleWalk.Rotation = 0f;
-            }
-            
-
             // Als de Right knop wordt losgelaten, dan moet de 
             // explorer weer in de toestand Idle komen
             if (Input.LevelDetectKeyUp(Keys.Right))

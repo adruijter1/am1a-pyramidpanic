@@ -146,7 +146,29 @@ namespace PyramidPanic
                     break;
                 }
             }
-        }   
+        }    
     
+        // Open alle deuren
+        public static void OpenDoors()
+        {
+            if (Score.OpenDoors() && Score.DoorsClosed)
+            {
+                for (int i = 0; i < level.Blocks.GetLength(0); i++)
+                {
+                    // voor iedere rij wil je alle kolommen doorlopen
+                    // getLength(1) geeft het aantal kolommen
+                    for (int j = 0; j < level.Blocks.GetLength(1); j++)
+                    {
+                        // Onderzoek voor ieder Blockelement in het array of de property
+                        // Passable de waarde true heeft.
+                        if (level.Blocks[i, j].Character == 'u')
+                        {
+                            level.Blocks[i, j].Passable = true;
+                        }
+                    }
+                }
+                Score.DoorsClosed = false;
+            }
+        }
     }
 }

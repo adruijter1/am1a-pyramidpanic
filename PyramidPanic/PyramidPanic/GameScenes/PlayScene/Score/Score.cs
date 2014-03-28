@@ -18,6 +18,8 @@ namespace PyramidPanic
         private static int points = 0;
         private static int scarabs = 0;
         private static int lives = 3;
+        private static int minimalPointsForNextLevel = 100;
+        private static bool doorsClosed = true;
 
         /* Maak een static method genaamd Initialize() die points = 0, scarabs = 0
          * en lives = 3 initialiseerd. Deze method roep je static aan: Score.Initialize();
@@ -44,6 +46,21 @@ namespace PyramidPanic
         {
             get { return lives; }
             set { lives = value; }
+        }
+        public static bool DoorsClosed
+        {
+            get { return doorsClosed; }
+            set { doorsClosed = value; }
+        }
+
+        /* Methods
+         */
+        public static bool OpenDoors()
+        {
+            if (points > minimalPointsForNextLevel)
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace PyramidPanic
         // classes.
         public void LoadContent()
         {
-            this.level = new Level(this.game, 0);
+            this.level = new Level(this.game, 1);
         }
 
         // Update methode. Deze methode wordt normaal 60 maal per seconde aangeroepen.

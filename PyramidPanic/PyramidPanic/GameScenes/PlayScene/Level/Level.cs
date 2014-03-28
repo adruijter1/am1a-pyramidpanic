@@ -136,8 +136,6 @@ namespace PyramidPanic
                     this.blocks[column, row].Draw(gameTime);
                 }
             }
-            // Teken het panel
-            this.panel.Draw(gameTime);
            
             // Teken alle Image objecten in de treasureslist
             foreach (Image treasure in this.treasures)
@@ -159,6 +157,10 @@ namespace PyramidPanic
 
             // De explorer wordt getekend
             this.explorer.Draw(gameTime);
+
+            // Teken het panel
+            this.panel.Draw(gameTime);
+
             this.state.Draw(gameTime);
         }
 

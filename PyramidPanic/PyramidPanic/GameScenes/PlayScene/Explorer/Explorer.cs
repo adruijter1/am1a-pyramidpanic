@@ -116,6 +116,7 @@ namespace PyramidPanic
            ExplorerManager.CollisionDetectTreasures();
            ExplorerManager.CollisionDetectScorpions();
            ExplorerManager.CollisionDetectBeetles();
+           ExplorerManager.OpenDoors();
         }
 
         //Draw

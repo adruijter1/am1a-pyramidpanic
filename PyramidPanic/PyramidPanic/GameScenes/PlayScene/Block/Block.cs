@@ -14,16 +14,22 @@ namespace PyramidPanic
     public class Block : Image
     {
         //Fields
-        private bool passable; 
+        private bool passable;
+        private Char character;
 
         //Properties
         public bool Passable
         {
-            get { return passable; }
+            get { return this.passable; }
+            set { this.passable = value; }
         }
         public Rectangle Rectangle
         {
             get { return this.rectangle; }
+        }
+        public Char Character
+        {
+            get { return this.character; }
         }
 
         //Constructor
@@ -31,6 +37,7 @@ namespace PyramidPanic
             : base(game, pathNameAsset, position, character)
         {
             this.passable = passable;
+            this.character = character;
         }
 
         //Update
