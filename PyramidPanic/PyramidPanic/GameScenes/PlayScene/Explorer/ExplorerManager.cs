@@ -168,6 +168,7 @@ namespace PyramidPanic
                     }
                 }
                 Score.DoorsClosed = false;
+                level.State = level.DoorOpen;
             }
         }
     }

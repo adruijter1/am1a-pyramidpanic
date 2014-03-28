@@ -30,6 +30,7 @@ namespace PyramidPanic
         private LevelPause pause;
         private LevelPlay play;
         private LevelGameOver gameOver;
+        private LevelDoorOpen doorOpen;
 
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
@@ -63,6 +64,10 @@ namespace PyramidPanic
         public LevelGameOver GameOver
         {
             get { return this.gameOver; }
+        }
+        public LevelDoorOpen DoorOpen
+        {
+            get { return this.doorOpen; }
         }
 
         public List<Image> Treasures
@@ -99,6 +104,7 @@ namespace PyramidPanic
             this.pause = new LevelPause(this);
             this.play = new LevelPlay(this);
             this.gameOver = new LevelGameOver(this);
+            this.doorOpen = new LevelDoorOpen(this);
             this.state = this.play;
             this.Initialize(levelIndex);
         }
