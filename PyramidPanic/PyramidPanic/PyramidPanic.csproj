@@ -146,6 +146,7 @@
     <Compile Include="GameScenes\PlayScene\Explorer\ExplorerWalkRight.cs" />
     <Compile Include="GameScenes\PlayScene\IEntityState.cs" />
     <Compile Include="GameScenes\PlayScene\Beetle\WalkUp.cs" />
+    <Compile Include="GameScenes\PlayScene\Level\LevelYouWon.cs" />
     <Compile Include="GameScenes\PlayScene\Level\LevelDoorClosed.cs" />
     <Compile Include="GameScenes\PlayScene\Level\ILevel.cs" />
     <Compile Include="GameScenes\PlayScene\Level\Level.cs" />

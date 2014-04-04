@@ -33,6 +33,7 @@ namespace PyramidPanic
         private LevelDoorOpen doorOpen;
         private LevelNextLevel nextLevel;
         private LevelDoorClosed doorClosed;
+        private LevelYouWon youWon;
 
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
@@ -79,7 +80,10 @@ namespace PyramidPanic
         {
             get { return this.doorClosed;}
         }
-
+        public LevelYouWon YouWon
+        {
+            get { return this.youWon; }
+        }
         public List<Image> Treasures
         {
             get { return this.treasures; }
@@ -118,6 +122,7 @@ namespace PyramidPanic
             this.doorOpen = new LevelDoorOpen(this);
             this.nextLevel = new LevelNextLevel(this);
             this.doorClosed = new LevelDoorClosed(this);
+            this.youWon = new LevelYouWon(this);
             this.state = this.play;
             this.Initialize(levelIndex);
         }

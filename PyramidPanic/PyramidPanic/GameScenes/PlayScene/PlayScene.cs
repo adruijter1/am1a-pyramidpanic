@@ -51,7 +51,14 @@ namespace PyramidPanic
             // Check of de explorer het level is uitgelopen...
             if (ExplorerManager.WalkOutOfLevel())
             {
-                this.level.State = this.level.NextLevel;
+                if (this.level.LevelIndex == 1)
+                {
+                    this.level.State = this.level.YouWon;
+                }
+                else
+                {
+                    this.level.State = this.level.NextLevel;
+                }
             }
             // Roep de Update-method aan van de Level-class
             this.level.Update(gameTime);                      
