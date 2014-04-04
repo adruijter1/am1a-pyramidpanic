@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    public class LevelDoorOpen : ILevel
+    public class LevelDoorClosed : ILevel
     {
          // Fields
         private Level level;
@@ -22,12 +22,11 @@ namespace PyramidPanic
         // Properties
 
         // Constructor
-        public LevelDoorOpen(Level level)
+        public LevelDoorClosed(Level level)
         {
             this.level = level;
-            this.overlay = new Image(level.Game, @"Overlay\overlay", Vector2.Zero, '.');
-            this.message = new Image(level.Game, @"Overlay\message", new Vector2(170f, 140f), '.');
-            this.overlay.Color = new Color(0f, 0f, 0f, 0.6f);
+            this.overlay = new Image(level.Game, @"Overlay\DoorsAreClosed", Vector2.Zero, '.');
+            this.overlay.Color = new Color(1f, 1f, 1f, 1f);
         }
 
         // Update
@@ -46,7 +45,6 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.overlay.Draw(gameTime);
-            this.message.Draw(gameTime);
         }
     }
 }

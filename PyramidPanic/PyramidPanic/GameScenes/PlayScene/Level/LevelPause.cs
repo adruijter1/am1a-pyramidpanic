@@ -34,7 +34,7 @@ namespace PyramidPanic
         {
             this.timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (this.timer > 3)
+            if (this.timer > 1)
             {               
                 ExplorerManager.CollisionDetectScorpions();
                 ExplorerManager.CollisionDetectBeetles();
