@@ -150,6 +150,7 @@
     <Compile Include="GameScenes\PlayScene\Level\Level.cs" />
     <Compile Include="GameScenes\PlayScene\Level\LevelDoorOpen.cs" />
     <Compile Include="GameScenes\PlayScene\Level\LevelGameOver.cs" />
+    <Compile Include="GameScenes\PlayScene\Level\LevelNextLevel.cs" />
     <Compile Include="GameScenes\PlayScene\Level\LevelPause.cs" />
     <Compile Include="GameScenes\PlayScene\Level\LevelPlay.cs" />
     <Compile Include="GameScenes\PlayScene\Panel\Panel.cs" />

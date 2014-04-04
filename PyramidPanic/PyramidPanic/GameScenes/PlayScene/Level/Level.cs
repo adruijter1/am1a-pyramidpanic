@@ -31,6 +31,7 @@ namespace PyramidPanic
         private LevelPlay play;
         private LevelGameOver gameOver;
         private LevelDoorOpen doorOpen;
+        private LevelNextLevel nextLevel;
 
         // In deze list worden de beetles opgeslagen
         private List<Beetle> beetles;
@@ -65,6 +66,10 @@ namespace PyramidPanic
         {
             get { return this.gameOver; }
         }
+        public LevelNextLevel NextLevel
+        {
+            get { return this.nextLevel; }
+        }
         public LevelDoorOpen DoorOpen
         {
             get { return this.doorOpen; }
@@ -81,6 +86,7 @@ namespace PyramidPanic
         public int LevelIndex
         {
             get { return this.levelIndex; }
+            set { this.levelIndex = value; }
         }
         public List<Scorpion> Scorpions
         {
@@ -105,6 +111,7 @@ namespace PyramidPanic
             this.play = new LevelPlay(this);
             this.gameOver = new LevelGameOver(this);
             this.doorOpen = new LevelDoorOpen(this);
+            this.nextLevel = new LevelNextLevel(this);
             this.state = this.play;
             this.Initialize(levelIndex);
         }
@@ -123,6 +130,12 @@ namespace PyramidPanic
             if (Score.Lives == 0)
             {
                 this.state = this.gameOver;
+            }
+            if (Score.GameOver)
+            {
+                this.state = this.gameOver;
+                Score.GameOver = false;
+                Score.DoorsClosed = true;
             }
             this.state.Update(gameTime);
         }

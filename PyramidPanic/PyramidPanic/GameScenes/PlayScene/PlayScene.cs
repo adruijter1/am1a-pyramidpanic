@@ -36,7 +36,7 @@ namespace PyramidPanic
         // classes.
         public void LoadContent()
         {
-            this.level = new Level(this.game, 1);
+            this.level = new Level(this.game, 0);
         }
 
         // Update methode. Deze methode wordt normaal 60 maal per seconde aangeroepen.
@@ -46,6 +46,12 @@ namespace PyramidPanic
             if (Input.EdgeDetectKeyDown(Keys.B))
             {
                 this.game.IState = this.game.StartScene;
+            }
+
+            // Check of de explorer het level is uitgelopen...
+            if (ExplorerManager.WalkOutOfLevel())
+            {
+                this.level.State = this.level.NextLevel;
             }
             // Roep de Update-method aan van de Level-class
             this.level.Update(gameTime);                      

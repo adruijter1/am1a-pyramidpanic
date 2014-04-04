@@ -111,6 +111,7 @@ namespace PyramidPanic
                     {
                         level.Scorpions.Remove(scorpion);
                         Score.Lives--;
+                        Score.Points -= 100;
                         explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
                         explorer.State = explorer.Idle;
                         explorer.Idle.Initialize();
@@ -137,6 +138,7 @@ namespace PyramidPanic
                     {
                         level.Beetles.Remove(beetle);
                         Score.Lives--;
+                        Score.Points -= 100;
                         explorer.Position = new Vector2(10 * 32f - 16, 7 * 32f - 16);
                         explorer.State = explorer.Idle;
                         explorer.Idle.Initialize();
@@ -170,6 +172,41 @@ namespace PyramidPanic
                 Score.DoorsClosed = false;
                 level.State = level.DoorOpen;
             }
+            if (!Score.OpenDoors() && !Score.DoorsClosed)
+            {
+                for (int i = 0; i < level.Blocks.GetLength(0); i++)
+                {
+                    // voor iedere rij wil je alle kolommen doorlopen
+                    // getLength(1) geeft het aantal kolommen
+                    for (int j = 0; j < level.Blocks.GetLength(1); j++)
+                    {
+                        // Onderzoek voor ieder Blockelement in het array of de property
+                        // Passable de waarde true heeft.
+                        if (level.Blocks[i, j].Character == 'u')
+                        {
+                            level.Blocks[i, j].Passable = false;
+                        }
+                    }
+                }
+                Score.DoorsClosed = true;
+                level.State = level.DoorOpen;
+            }
         }
+    
+        // Check of de explorer door een deur naar buiten is gelopen.
+        public static bool WalkOutOfLevel()
+        {
+            if( explorer.Position.X >= 640  ||
+                explorer.Position.X <= 0    ||
+                explorer.Position.Y >= 448  ||
+                explorer.Position.Y <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }    
     }
 }
