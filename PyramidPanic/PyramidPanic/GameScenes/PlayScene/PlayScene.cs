@@ -51,7 +51,7 @@ namespace PyramidPanic
             // Check of de explorer het level is uitgelopen...
             if (ExplorerManager.WalkOutOfLevel())
             {
-                if (this.level.LevelIndex == 1)
+                if (this.level.LevelIndex == 2)
                 {
                     this.level.State = this.level.YouWon;
                 }

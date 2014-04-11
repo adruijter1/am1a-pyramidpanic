@@ -30,6 +30,9 @@ namespace PyramidPanic
             points = 0;
             scarabs = 0;
             lives = 3;
+            gameOver = false;
+            doorsClosed = true;
+            minimalPointsForNextLevel = 100;
         }
 
         // Properties
@@ -40,8 +43,11 @@ namespace PyramidPanic
                     points = value;
                     if (points < 0)
                     {
+                        if (lives == 0)
+                        {
+                            gameOver = true;
+                        }
                         points = 0;
-                        gameOver = true;
                     }
                 }
         }
