@@ -38,7 +38,7 @@ namespace PyramidPanic
             {               
                 this.level.State = this.level.Play;
                 Score.DoorsClosed = true;
-                Score.MinimalPointsForNextLevel += 300;
+                Score.MinimalPointsForNextLevel = Score.Points + 300;
                 this.level.LevelIndex += 1;
                 this.level.Initialize(this.level.LevelIndex);
                 this.timer = 0f;

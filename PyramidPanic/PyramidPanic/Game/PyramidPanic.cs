@@ -107,7 +107,7 @@ namespace PyramidPanic
         protected override void Initialize()
         {
             // Verander de titel van het canvas
-            Window.Title = "Pyramid Panic Beta version 00.00.00.03";
+            Window.Title = "Pyramid Panic Beta version 00.00.00.04";
             
             // Maakt de muis zichtbaar
             IsMouseVisible = true;

@@ -16,25 +16,29 @@ namespace PyramidPanic
     {
         //Fields van de class StartScene
         private PyramidPanic game;
+        private Image helpText;
+        private Vector2 speed;
 
         // Constructor van de StartScene-class krijgt een object game mee van het type PyramidPanic
         public HelpScene(PyramidPanic game)
         {
             this.game = game;
+            this.Initialize();
         }
 
         // Initialize methode. Deze methode initialiseert (geeft startwaarden aan variabelen).
         // Void wil zeggen dat er niets teruggegeven wordt.
         public void Initialize()
         {
-
+            this.speed = new Vector2(0f, 20f);
+            this.LoadContent();
         }
 
         // LoadContent methode. Deze methode maakt nieuwe objecten aan van de verschillende
         // classes.
         public void LoadContent()
         {
-
+            this.helpText = new Image(game, @"Help\Help", new Vector2(0f, -1f), '.');
         }
 
         // Update methode. Deze methode wordt normaal 60 maal per seconde aangeroepen.
@@ -49,6 +53,20 @@ namespace PyramidPanic
             {
                 this.game.IState = this.game.PlayScene;
             }
+            //Console.WriteLine(Input.ScrollDirection());
+            Console.WriteLine(this.helpText.Position.Y);
+            
+                if (Input.ScrollDirection() == "down")
+                {
+                    if ( this.helpText.Position.Y < -20)
+                    this.helpText.Position += this.speed;
+                }
+                if (Input.ScrollDirection() == "up")
+                {
+                    if (this.helpText.Position.Y > -500)
+                    this.helpText.Position -= this.speed;
+                }
+              
         }
 
         // Draw methode. Deze methode wordt normaal 60 maal per seconde aangeroepen en
@@ -56,6 +74,7 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.game.GraphicsDevice.Clear(Color.Green);
+            this.helpText.Draw(gameTime);
         }
     }
 }

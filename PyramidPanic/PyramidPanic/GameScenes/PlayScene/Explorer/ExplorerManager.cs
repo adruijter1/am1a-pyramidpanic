@@ -101,7 +101,7 @@ namespace PyramidPanic
         {
             foreach (Scorpion scorpion in level.Scorpions)
             {
-                if (explorer.CollisionRect.Intersects(scorpion.CollisionRect))
+                if (explorer.CollisionRectEnemy.Intersects(scorpion.CollisionRect))
                 {
                     if (level.State.Equals(level.Play))
                     {
@@ -128,7 +128,7 @@ namespace PyramidPanic
         {
             foreach (Beetle beetle in level.Beetles)
             {
-                if (explorer.CollisionRect.Intersects(beetle.CollisionRect))
+                if (explorer.CollisionRectEnemy.Intersects(beetle.CollisionRect))
                 {
                     if (level.State.Equals(level.Play))
                     {

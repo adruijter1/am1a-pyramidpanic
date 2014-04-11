@@ -96,5 +96,21 @@ namespace PyramidPanic
             mouseRect.Y = ms.Y;
             return mouseRect;
         }
+
+        public static string ScrollDirection()
+        {
+            if (ms.ScrollWheelValue > oms.ScrollWheelValue)
+            {
+                return "up";
+            }
+            if (ms.ScrollWheelValue < oms.ScrollWheelValue)
+            {
+                return "down";
+            }
+            else
+            {
+                return "idle";
+            }
+        }
     }
 }
